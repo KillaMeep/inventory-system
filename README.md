@@ -79,7 +79,8 @@ except Exception as e: # add error logging
     print(status.ERROR,e)
 
 ```
-- This should mostly cover how to use this code, all you have to do now is run `db.py`! The `alldata.py` and `WIPEDB.py` files you just need to run. Keep in mind again, if you run the `WIPEDB.py` file, it WILL delete ALL of the data from your database!! This is highly dangerous, and I do not recommend it.
+##
+#### This should mostly cover how to use this code, all you have to do now is run `db.py`! The `alldata.py` and `WIPEDB.py` files you just need to run, they do as the title says. Alldata will provide you a rudimentary way to see all the data in your database, and WIPEDB will wipe all files in the db. Keep in mind, if you run the `WIPEDB.py` file, it WILL delete ALL of the data from your database!! This is highly dangerous, and I do not recommend it. Any lost files are not our fault, and you should use extreme caution when running this. I would recommend just deleting the file if you don't forsee yourself needing it.
 ## Authors
 
 - [@KillaMeep](https://www.github.com/KillaMeep)
