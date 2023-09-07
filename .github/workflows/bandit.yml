@@ -30,6 +30,6 @@ jobs:
       - name: Send SARIF to Discord Webhook
         uses: tsickert/discord-webhook@v5.3.0
         with:
-          webhook_url: ${{ secrets.DISCORD_WEBHOOK_ID }}
+          webhook_url: ${{ secrets.DISCORD_WEBHOOK_URL }}
           content: "Bandit Scan Result:"
           filename: results.sarif
