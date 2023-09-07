@@ -22,12 +22,7 @@ jobs:
         with:
           exit_zero: true
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Debugging
+      - name: Send Bandit Scan Results to Discord
         run: |
-          echo "DISCORD_WEBHOOK_URL: $DISCORD_WEBHOOK_URL"
-          DISCORD_WEBHOOK_URL="${{ secrets.DISCORD_WEBHOOK_URL }}"
-          DISCORD_WEBHOOK_URL=$(echo $DISCORD_WEBHOOK_URL | tr -d '[:space:]')
-          echo "Cleaned DISCORD_WEBHOOK_URL: $DISCORD_WEBHOOK_URL"
           BANDIT_RESULTS=$(bandit -f custom -o - -r .)
-          echo "BANDIT_RESULTS: $BANDIT_RESULTS"
-          curl -X POST -H "Content-Type: application/json" -d '{"content":"Bandit Scan Results:\n```'"$BANDIT_RESULTS"'```"}' "$DISCORD_WEBHOOK_URL"
+          curl -X POST -H "Content-Type: application/json" -d '{"content":"Bandit Scan Results:\n```'"$BANDIT_RESULTS"'```"}' "${{ secrets.DISCORD_WEBHOOK_URL }}"
