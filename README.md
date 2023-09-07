@@ -57,7 +57,8 @@ class Computer(Item):
 ```
 3. Awesome! Now that we have the `Item` class and the `Computer` subclass, we can send some data to the DB! Near the bottom of the `db.py` file, we have a comment (`#set items`). After this comment, we can add the new items we want to send to the db. For exmaple:
 ```python
-computer = Computer("My Home PC", "computer123", "Intel Core i7", "16 GB", "1 TB SSD") #name, part number, cpu, ram, storage
+#name, part number, cpu, ram, storage
+computer = Computer("My Home PC", "computer123", "Intel Core i7", "16 GB", "1 TB SSD")
 
 try:
     # leave this call, it looks at the classes from earlier, 
