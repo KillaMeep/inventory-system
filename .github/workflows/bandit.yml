@@ -32,3 +32,4 @@ jobs:
         with:
           webhook-url: ${{ secrets.DISCORD_WEBHOOK_URL }}
           content: "Test"
+          filename: results.sarif
