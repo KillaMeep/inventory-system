@@ -16,7 +16,6 @@ port = 3306
 # Open to all addresses on local
 [mysqld]
 bind-address = 0.0.0.0
-
 ```
 - This should mostly cover how to get the DB working. If you have any errors with this part, google is your friend.
 ## Using the `.env` File
@@ -50,8 +49,8 @@ class Item():
 ```python
 class Computer(Item):
     table_name = 'computers'
-    def __init__(self,name,part_number,cpu,ram,storage): #create the names for each value you want to make
-    super().__init__(name,part_number) #pull vars from our Items class earlier
+    def __init__(self,name,part_number,cpu,ram,storage): # create the names for each value you want to make
+    super().__init__(name,part_number) # pull vars from our Items class earlier
         self.cpu = cpu
         self.ram = ram
         self.storage = storage
@@ -61,11 +60,13 @@ class Computer(Item):
 computer = Computer("My Home PC", "computer123", "Intel Core i7", "16 GB", "1 TB SSD") #name, part number, cpu, ram, storage
 
 try:
-    create_tables_if_not_exist() #leave this call, it looks at the classes from earlier, and will create the talbes in the DB.
+    # leave this call, it looks at the classes from earlier, 
+    # and will create the talbes in the DB.
+    create_tables_if_not_exist()
 
-    insert_item(computer) #and now we send our item into the DB!
+    insert_item(computer) # and now we send our item into the DB!
 
-except Exception as e: #add error logging
+except Exception as e: # add error logging
     print('\n')
     print(status.ERROR,e)
 
