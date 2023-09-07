@@ -49,8 +49,10 @@ class Item():
 ```python
 class Computer(Item):
     table_name = 'computers'
-    def __init__(self,name,part_number,cpu,ram,storage): # create the names for each value you want to make
-    super().__init__(name,part_number) # pull vars from our Items class earlier
+    # create the names for each value you want to make in __init__
+    def __init__(self,name,part_number,cpu,ram,storage):
+    # now we pull the vars from our Items class earlier
+    super().__init__(name,part_number)
         self.cpu = cpu
         self.ram = ram
         self.storage = storage
