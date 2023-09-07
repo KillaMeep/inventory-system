@@ -80,6 +80,3 @@ except Exception as e: # add error logging
 - [@KillaMeep](https://www.github.com/KillaMeep)
 
 
-
-[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
-
