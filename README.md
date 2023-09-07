@@ -5,8 +5,8 @@ A simple Inventory management system using MariaDB for items lying around the ho
 
 
 ## Database Setup
-1. Before anything else, make sure you have your DB set up.
-2. For this code - as of right now -  It needs port 3306 open for tcp, and needs you to set the `port` value and `bind-address` in your `/etc/mysql/my.cnf` (or whevever your MariaDB config file is). Heres an example of what to change to open to all addresses on the local network (unsafe, but if its only in your network it should be fine.)
+1. Before anything else, make sure you have MariaDB installed and set up on your server. You can find out how to do that [here.](https://www.mariadbtutorial.com/getting-started/)
+2. For this code - as of right now -  you need port 3306 open to tcp, and you need to set the `port` value and `bind-address` in your `/etc/mysql/my.cnf` (or whevever your MariaDB config file is). Heres an example of what to change to open to all addresses on the local network (unsafe, but should be fine in a home environment)
 
 ```
 # Port or socket location where to connect
@@ -37,7 +37,12 @@ DB_DATABASE=database-name
 ```
 - Now you should be set up! This works for all the files, so set it up once, and you can forget about it.
 ## Code Usage
-1. You can define `Item` class which holds data ALL items in the system would have. Every class you create should have a variable set called `table.name`. This var will be used in generating the table name in the DB.
+1. Make sure you have python installed, and then run:
+ ```bash 
+ pip install mysql_connector_repackaged python-dotenv termcolor
+ ```
+
+2. Now lets work with the code! In the `db.py` file, you can define the `Item` class which holds data ALL items in the system would have. Every class you create should have a variable set called `table.name`. This var will be used in generating the table name in the database.
 ```python
 class Item():
     table.name = 'items'
@@ -45,7 +50,7 @@ class Item():
         self.name = name
         self.part_number = part_number
 ```
-2. You then can create subclasses which are for each item type, calling the `Item` class from earlier to use its name and part number vars!
+3. You then can create subclasses which are for each item type, calling the `Item` class from earlier to use its name and part number vars!
 ```python
 class Computer(Item):
     table_name = 'computers'
@@ -57,7 +62,7 @@ class Computer(Item):
         self.ram = ram
         self.storage = storage
 ```
-3. Awesome! Now that we have the `Item` class and the `Computer` subclass, we can send some data to the DB! Near the bottom of the `db.py` file, we have a comment (`#set items`). After this comment, we can add the new items we want to send to the db. For exmaple:
+4. Awesome! Now that we have the `Item` class and the `Computer` subclass, we can send some data to the database! Near the bottom of code, we can add the new items we want to send to the database. For exmaple:
 ```python
 #name, part number, cpu, ram, storage
 computer = Computer("My Home PC", "computer123", "Intel Core i7", "16 GB", "1 TB SSD")
