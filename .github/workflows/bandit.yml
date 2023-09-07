@@ -29,7 +29,7 @@ jobs:
       - name: Download SARIF artifact
         uses: actions/download-artifact@v2
         with:
-          name: results # This should match the name of the artifact you want to download
+          name: results.sarif # This should match the name of the artifact you want to download
       - name: Send To Discord Webhook
         uses: tsickert/discord-webhook@v5.3.0
         with:
