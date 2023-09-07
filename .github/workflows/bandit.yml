@@ -31,20 +31,5 @@ jobs:
         uses: tsickert/discord-webhook@v5.3.0
         with:
           webhook_url: ${{ secrets.DISCORD_WEBHOOK_ID }}
-          raw-data: |
-            {
-              "embeds": [
-                {
-                  "title": "Bandit Scan Results",
-                  "description": "Security scan results from Bandit",
-                  "color": 16711680, # Red
-                  "fields": [
-                    {
-                      "name": "SARIF Data",
-                      "value": "```json\n$(cat results.sarif)\n```",
-                      "inline": false
-                    }
-                  ]
-                }
-              ]
-            }
+          content: "Bandit Scan Result:"
+          filename: results.sarif
