@@ -24,9 +24,6 @@ jobs:
           exit_zero: true # optional, default is DEFAULT
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information.
 
-      - name: Generate SARIF file
-        run: echo "${{ steps.bandit.outputs.results }}" > results.sarif
-
 
       - name: Send To Discord Webhook
         uses: tsickert/discord-webhook@v5.3.0
