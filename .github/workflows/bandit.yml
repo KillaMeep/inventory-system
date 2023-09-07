@@ -1,22 +1,9 @@
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
-
-# Bandit is a security linter designed to find common security issues in Python code.
-# This action will run Bandit on your codebase.
-# The results of the scan will be found under the Security tab of your repository.
-
-# https://github.com/marketplace/actions/bandit-scan is ISC licensed, by abirismyname
-# https://pypi.org/project/bandit/ is Apache v2.0 licensed, by PyCQA
-
 name: Bandit
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
-    # The branches below must be a subset of the branches above
-    branches: [ "main" ]
+    branches: ["main"]
   schedule:
     - cron: '00 12 * * 0'
 
@@ -31,17 +18,34 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Bandit Scan
+        id: bandit
         uses: shundor/python-bandit-scan@9cc5aa4a006482b8a7f91134412df6772dbda22c
         with: # optional arguments
-          # exit with 0, even with results found
           exit_zero: true # optional, default is DEFAULT
-          # Github token of the repository (automatically created by Github)
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information.
-          
-          # ini_path: # optional, default is DEFAULT
-      - name: Send To Discord Webhook
-        uses: tsickert/discord-webhook@v5.3.0
-        with:
-          webhook-url: ${{ secrets.DISCORD_WEBHOOK_URL }}
-          content: "Test"
 
+      - name: Generate SARIF file
+        run: echo "${{ steps.bandit.outputs.results }}" > results.sarif
+
+      - name: Send SARIF to Discord Webhook
+        uses: Ilshidur/action-discord@v3
+        with:
+          webhook_id: ${{ secrets.DISCORD_WEBHOOK_ID }}
+          webhook_token: ${{ secrets.DISCORD_WEBHOOK_TOKEN }}
+          args: |
+            {
+              "embeds": [
+                {
+                  "title": "Bandit Scan Results",
+                  "description": "Security scan results from Bandit",
+                  "color": 16711680, # Red
+                  "fields": [
+                    {
+                      "name": "SARIF Data",
+                      "value": "```json\n$(cat results.sarif)\n```",
+                      "inline": false
+                    }
+                  ]
+                }
+              ]
+            }
