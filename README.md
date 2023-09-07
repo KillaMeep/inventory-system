@@ -4,7 +4,7 @@
 A simple Inventory management system using MariaDB for items lying around the house.
 
 
-## DB Setup
+## Database Setup
 1. Before anything else, make sure you have your DB set up.
 2. For this code - as of right now -  It needs port 3306 open for tcp, and needs you to set the `port` value and `bind-address` in your `/etc/mysql/my.cnf` (or whevever your MariaDB config file is). Heres an example of what to change to open to all addresses on the local network (unsafe, but if its only in your network it should be fine.)
 
@@ -18,7 +18,7 @@ port = 3306
 bind-address = 0.0.0.0
 ```
 - This should mostly cover how to get the DB working. If you have any errors with this part, google is your friend.
-## Using the `.env` File
+## Using the `.env` file
 
 This repository includes a `.env` file that contains sensitive configuration settings for logging into the DB. The `.env` file holds several items, heres how to set that up.
 
@@ -78,5 +78,4 @@ except Exception as e: # add error logging
 ## Authors
 
 - [@KillaMeep](https://www.github.com/KillaMeep)
-
 
