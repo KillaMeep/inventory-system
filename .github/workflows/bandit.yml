@@ -27,9 +27,9 @@ jobs:
       - name: Generate SARIF file
         run: echo "${{ steps.bandit.outputs.results }}" > results.sarif
 
+
       - name: Send To Discord Webhook
         uses: tsickert/discord-webhook@v5.3.0
         with:
           webhook-url: ${{ secrets.DISCORD_WEBHOOK_URL }}
-          content: "Test"
-          filename: results.sarif
+          content: "${{ steps.bandit.outputs.results }}"
