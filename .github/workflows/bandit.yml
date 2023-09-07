@@ -25,5 +25,6 @@ jobs:
       - name: Send Bandit Scan Results to Discord
         run: |
           DISCORD_WEBHOOK_URL="${{ secrets.DISCORD_WEBHOOK_URL }}"
+          DISCORD_WEBHOOK_URL=$(echo $DISCORD_WEBHOOK_URL | tr -d '[:space:]') # Remove any extra spaces or line breaks
           BANDIT_RESULTS=$(bandit -f custom -o - -r .)
-          curl -X POST -H "Content-Type: application/json" -d '{"content":"Bandit Scan Results:\n```'"$BANDIT_RESULTS"'```"}' $DISCORD_WEBHOOK_URL
+          curl -X POST -H "Content-Type: application/json" -d '{"content":"Bandit Scan Results:\n```'"$BANDIT_RESULTS"'```"}' "$DISCORD_WEBHOOK_URL"
