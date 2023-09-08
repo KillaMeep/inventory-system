@@ -39,7 +39,7 @@ DB_DATABASE=database-name
 ## Code Usage
 1. Make sure you have python installed, and then run:
  ```bash 
- pip install mysql_connector_repackaged python-dotenv termcolor
+ pip install mysql_connector_repackaged mysql-connector-python python-dotenv termcolor
  ```
 
 2. Now lets work with the code! In the `db.py` file, you can define the `Item` class which holds data ALL items in the system would have. Every class you create should have a variable set called `table.name`. This var will be used in generating the table name in the database.
