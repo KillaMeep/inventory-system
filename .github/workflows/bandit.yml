@@ -42,5 +42,5 @@ jobs:
           webhook-url: ${{ secrets.DISCORD_WEBHOOK_URL }}
           username: "Bandit Workflow"
           avatar-url: "https://github.com/KillaMeep/inventory-system/blob/main/icons/bot-icon.png?raw=true"
-          content: "Bandit Output for branch: ${{ steps.branch_name.outputs.branch }}"
+          content: 'Bandit output for branch: "${{ steps.branch_name.outputs.branch }}"'
           filename: results.sarif
