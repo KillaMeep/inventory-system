@@ -84,4 +84,5 @@ except Exception as e: # add error logging
 ## Authors
 
 - [@KillaMeep](https://www.github.com/KillaMeep)
+- [@feldtda](https://github.com/feldtda)
 
